@@ -109,11 +109,13 @@ public class UserServiceImpl implements UserService {
         }
         return isRegister;
     }
-    public Page<User> getAllUsers(Pageable pageable) {
-        return userRepository.findAll(pageable);
-    }
+
     @Override
     public boolean isCorrectConfirmPassword(User user) {
-        return user.getPassword().equals(user.getConfirmPassword());
+        return false;
+    }
+
+    public Page<User> getAllUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }

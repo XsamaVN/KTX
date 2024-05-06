@@ -1,9 +1,6 @@
 package com.example.jwtspring3.model;
-
 import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -14,34 +11,44 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false)
     private String username;
     @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private String confirmPassword;
+    private String gender;
+    private int phone;
+    private String address;
+    private String dateOfBirth;
+    private int identificationCard;
+    @Column(length = 1000)
+    private String img;
+    private String clazz;
     private boolean enabled = true;
+    @ManyToMany
+    @JoinTable(name = "user_room",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "room_id"))
+    private Set<Room> rooms;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-    public User(String username, String password, String confirmPassword, Set<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.roles = roles;
-    }
-
-    public User(Long id, String username, String password, String confirmPassword, boolean enabled, Set<Role> roles) {
+    public User(Long id, String username, String password, String gender, int phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Room> rooms, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.confirmPassword = confirmPassword;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.dateOfBirth = dateOfBirth;
+        this.identificationCard = identificationCard;
+        this.img = img;
+        this.clazz = clazz;
         this.enabled = enabled;
+        this.rooms = rooms;
         this.roles = roles;
     }
 
@@ -72,12 +79,60 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getGender() {
+        return gender;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public int getIdentificationCard() {
+        return identificationCard;
+    }
+
+    public void setIdentificationCard(int identificationCard) {
+        this.identificationCard = identificationCard;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
     }
 
     public boolean isEnabled() {
@@ -86,6 +141,14 @@ public class User implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Set<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(Set<Room> rooms) {
+        this.rooms = rooms;
     }
 
     public Set<Role> getRoles() {
