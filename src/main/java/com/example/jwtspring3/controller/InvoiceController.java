@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/invoices")
 public class InvoiceController {
     @Autowired
     InvoiceService invoiceService;
-    @GetMapping("/show-invoice")
+    @GetMapping
     public ResponseEntity<Iterable<Invoice>> findAll(){
         return new ResponseEntity<>(invoiceService.findAll(), HttpStatus.OK);
     }
-    @PostMapping("/add-invoice")
+    @PostMapping
     public ResponseEntity<Invoice> addInvoice(@RequestBody Invoice invoice){
         return new ResponseEntity<>(invoiceService.save(invoice),HttpStatus.CREATED);
     }

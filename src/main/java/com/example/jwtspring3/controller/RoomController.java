@@ -7,21 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/rooms")
 public class RoomController {
     @Autowired
     RoomService roomService;
 
-    @GetMapping("/show-room")
+    @GetMapping
     public ResponseEntity<Iterable<Room>> showAllRoom() {
         Iterable<Room> rooms = roomService.findAll();
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
 
-    @PostMapping("/add-room")
+    @PostMapping
     public ResponseEntity<Room> addRoom(@RequestBody Room room) {
         return new ResponseEntity<>(roomService.save(room), HttpStatus.CREATED);
     }
-    @PutMapping("/update-room/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Room> update(@PathVariable Long id, @RequestBody Room room) {
         room.setId(id);
         roomService.save(room);
@@ -32,5 +33,4 @@ public class RoomController {
         roomService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

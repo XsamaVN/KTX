@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/rooms-device")
 public class RoomDeviceController {
     @Autowired
     RoomDeviceService roomDeviceService;
 
-    @GetMapping("/show-room-device")
+    @GetMapping
     public ResponseEntity<Iterable<RoomDevice>> findAll(Long id){
         return new ResponseEntity<>(roomDeviceService.findAllRoomId(id), HttpStatus.OK);
     }
-    @PostMapping("/add-room-device")
+    @PostMapping
     public ResponseEntity<RoomDevice> addRoomDevice(@RequestBody RoomDevice roomDevice){
         return new ResponseEntity<>(roomDeviceService.save(roomDevice),HttpStatus.CREATED);
     }

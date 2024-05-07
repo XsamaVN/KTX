@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/devices")
 public class DeviceController {
     @Autowired
     DeviceService deviceService;
 
-    @GetMapping("/show-device")
+    @GetMapping
     public ResponseEntity<Iterable<Device>> findAll() {
         Iterable<Device> devices = deviceService.findAll();
         return new ResponseEntity<>(devices , HttpStatus.OK);
     }
-    @PostMapping("/add-device")
+    @PostMapping
     public ResponseEntity<Device> addDevice(@RequestBody Device device ){
         return new ResponseEntity<>(deviceService.save(device),HttpStatus.CREATED);
     }
