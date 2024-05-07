@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/devices")
+@RequestMapping("/api/devices")
 public class DeviceController {
     @Autowired
     DeviceService deviceService;

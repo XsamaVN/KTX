@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/rooms-device")
+@RequestMapping("/api/rooms-device")
 public class RoomDeviceController {
     @Autowired
     RoomDeviceService roomDeviceService;
