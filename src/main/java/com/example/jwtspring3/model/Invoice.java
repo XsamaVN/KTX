@@ -8,18 +8,18 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Room idRoom;
+    private Room room;
     @ManyToOne
-    private User idUser;
+    private User user;
     private String useElectricity;
     private String useWater;
     private Long servicePrice;
     private Long price;
 
-    public Invoice(Long id, Room idRoom, User idUser, String useElectricity, String useWater, Long servicePrice, Long price) {
+    public Invoice(Long id, Room room, User user, String useElectricity, String useWater, Long servicePrice, Long price) {
         this.id = id;
-        this.idRoom = idRoom;
-        this.idUser = idUser;
+        this.room = room;
+        this.user = user;
         this.useElectricity = useElectricity;
         this.useWater = useWater;
         this.servicePrice = servicePrice;
@@ -37,20 +37,20 @@ public class Invoice {
         this.id = id;
     }
 
-    public Room getIdRoom() {
-        return idRoom;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setIdRoom(Room idRoom) {
-        this.idRoom = idRoom;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    public User getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getUseElectricity() {

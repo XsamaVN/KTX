@@ -73,9 +73,6 @@ public class UserController {
                 return new ResponseEntity<>("Username existed", HttpStatus.OK);
             }
         }
-        if (!userService.isCorrectConfirmPassword(user)) {
-            return new ResponseEntity<>("Input confirm password", HttpStatus.OK);
-        }
         if (user.getRoles() == null) {
             Role role1 = roleService.findByName("ROLE_USER");
             Set<Role> roles1 = new HashSet<>();
@@ -95,11 +92,6 @@ public class UserController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userService.findByUsername(user.getUsername());
         return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
-    }
-
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return new ResponseEntity("Hello World", HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")

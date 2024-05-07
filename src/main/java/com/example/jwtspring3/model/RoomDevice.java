@@ -8,50 +8,34 @@ public class RoomDevice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    private Room idRoom;
+    private Room room;
     @ManyToOne
-    private Device idDevice;
+    private Device device;
     private String status;
 
-    public RoomDevice(Long id, Room idRoom, Device idDevice, String status) {
-        this.id = id;
-        this.idRoom = idRoom;
-        this.idDevice = idDevice;
-        this.status = status;
+    public RoomDevice() {
     }
 
-    public RoomDevice() {
+    public RoomDevice(Long id, Room room, Device device, String status) {
+        this.id = id;
+        this.room = room;
+        this.device = device;
+        this.status = status;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Room getRoom() {
+        return room;
     }
 
-    public Room getIdRoom() {
-        return idRoom;
-    }
-
-    public void setIdRoom(Room idRoom) {
-        this.idRoom = idRoom;
-    }
-
-    public Device getIdDevice() {
-        return idDevice;
-    }
-
-    public void setIdDevice(Device idDevice) {
-        this.idDevice = idDevice;
+    public Device getDevice() {
+        return device;
     }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }
