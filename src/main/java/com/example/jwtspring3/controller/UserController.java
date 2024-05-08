@@ -27,6 +27,7 @@ import java.util.Set;
 
 @RestController
 @CrossOrigin("*")
+@RequestMapping("/api")
 public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -58,7 +59,7 @@ public class UserController {
 
     @GetMapping("/admin/users")
     public ResponseEntity<Iterable<User>> showAllUserByAdmin() {
-        Iterable<User> users = userService.findAll();
+        Iterable<User> users = userService.findAllUserByAdmin();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
@@ -114,4 +115,14 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @PutMapping("/admin/{id}")
+    public ResponseEntity<User> changeEnabled(@PathVariable Long id) {
+        Optional<User> optionalUser = userService.findById(id);
+        User user = optionalUser.get();
+        user.setEnabled(!user.isEnabled());
+        userService.save(user);
+        return new  ResponseEntity<>(user,HttpStatus.OK);
+    }
 }
+

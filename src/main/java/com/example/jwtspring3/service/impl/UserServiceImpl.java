@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Iterable<User> findAllUserByAdmin() {
+        return userRepository.findByRolesIdNot(1L);
+    }
+
+    @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
