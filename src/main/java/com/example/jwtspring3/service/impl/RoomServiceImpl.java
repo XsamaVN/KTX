@@ -6,6 +6,8 @@ import com.example.jwtspring3.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,8 +19,13 @@ public class RoomServiceImpl implements RoomService {
     public Room save(Room room) {
        return roomRepository.save(room);
     }
-    @Override
-    public Iterable<Room> findAll() {
+
+    public Iterable<Room> findAll(Long id) {
+        if (id != null) {
+            List<Room> roomList = new ArrayList<>();
+            roomRepository.findById(id).ifPresent(roomList::add);
+            return roomList;
+        }
         return roomRepository.findAll();
     }
 

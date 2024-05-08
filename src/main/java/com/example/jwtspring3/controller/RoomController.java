@@ -13,8 +13,8 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Room>> showAllRoom() {
-        Iterable<Room> rooms = roomService.findAll();
+    public ResponseEntity<Iterable<Room>> showAllRoom(Long id) {
+        Iterable<Room> rooms = roomService.findAll(id);
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
 
