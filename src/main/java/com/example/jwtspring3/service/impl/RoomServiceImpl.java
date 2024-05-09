@@ -20,15 +20,6 @@ public class RoomServiceImpl implements RoomService {
        return roomRepository.save(room);
     }
 
-    public Iterable<Room> findAll(Long id) {
-        if (id != null) {
-            List<Room> roomList = new ArrayList<>();
-            roomRepository.findById(id).ifPresent(roomList::add);
-            return roomList;
-        }
-        return roomRepository.findAll();
-    }
-
     @Override
     public Optional<Room> findRoomById(Long id) {
         return roomRepository.findById(id);

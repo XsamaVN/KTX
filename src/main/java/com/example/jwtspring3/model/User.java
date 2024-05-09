@@ -24,19 +24,13 @@ public class User implements Serializable {
     private String img;
     private String clazz;
     private boolean enabled = true;
-    @ManyToMany
-    @JoinTable(name = "user_room",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private Set<Room> rooms;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-    public User(Long id, String username, String password, String gender, int phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Room> rooms, Set<Role> roles) {
+    public User(Long id, String username, String password, String gender, int phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -48,7 +42,6 @@ public class User implements Serializable {
         this.img = img;
         this.clazz = clazz;
         this.enabled = enabled;
-        this.rooms = rooms;
         this.roles = roles;
     }
 
@@ -141,14 +134,6 @@ public class User implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public Set<Room> getRooms() {
-        return rooms;
-    }
-
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
     }
 
     public Set<Role> getRoles() {
