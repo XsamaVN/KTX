@@ -18,7 +18,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice save(Invoice invoice) {
         Optional<Room> room = roomService.findRoomById(invoice.getRoom().getId());
-        room.get().setCurrentPresent(room.get().getCurrentPresent() + 1);
+        room.get().setCurrentPresent(0);
         return invoiceRepository.save(invoice);
     }
 
