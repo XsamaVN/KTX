@@ -17,14 +17,14 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Room>> showAllRoom(String type, Long id) {
-        Iterable<Room> rooms = roomService.findAll(type, id);
+    public ResponseEntity<Iterable<Room>> showAllRoom(String type) {
+        Iterable<Room> rooms = roomService.findAll(type);
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity getOne(@PathVariable Long id) {
+    public ResponseEntity<Optional<Room>> getOneRoom(@PathVariable Long id){
         Optional<Room> room = roomService.findRoomById(id);
-        return new ResponseEntity<>(room, HttpStatus.OK);
+        return new ResponseEntity<>(room,HttpStatus.OK);
     }
 
     @PostMapping
@@ -42,4 +42,5 @@ public class RoomController {
         roomService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

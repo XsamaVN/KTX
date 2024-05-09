@@ -15,12 +15,19 @@ public class Invoice {
     private String useWater;
     private Long servicePrice;
     private Long price;
-    private String startDate;
-    private String endDate;
-
 
 
     public Invoice() {
+    }
+
+    public Invoice(Long id, Room room, User user, String useElectricity, String useWater, Long servicePrice, Long price) {
+        this.id = id;
+        this.room = room;
+        this.user = user;
+        this.useElectricity = useElectricity;
+        this.useWater = useWater;
+        this.servicePrice = servicePrice;
+        this.price = price;
     }
 
     public Long getId() {
@@ -79,19 +86,4 @@ public class Invoice {
         this.price = price;
     }
 
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
 }

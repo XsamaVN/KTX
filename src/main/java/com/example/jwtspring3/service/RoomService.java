@@ -11,4 +11,5 @@ public interface RoomService {
 
     Iterable<Room> findAll(String type, Long id);
 
+
 }
