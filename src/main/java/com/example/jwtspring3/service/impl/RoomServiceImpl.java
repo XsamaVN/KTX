@@ -31,4 +31,14 @@ public class RoomServiceImpl implements RoomService {
     public void delete(Long id) {
         roomRepository.deleteById(id);
     }
+    @Override
+    public Iterable<Room> findAll(String type) {
+        if(type == null){
+            return roomRepository.findAll();
+        }
+        else {
+            return roomRepository.findAllByType(type);
+        }
+
+    }
 }
