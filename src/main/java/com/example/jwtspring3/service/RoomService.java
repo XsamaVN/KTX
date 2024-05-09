@@ -10,6 +10,6 @@ public interface RoomService {
     Optional<Room> findRoomById(Long id);
     void delete(Long id);
 
-    Iterable<Room> findAll(String type);
+    Iterable<Room> findAll(String type, Long id);
 
 }

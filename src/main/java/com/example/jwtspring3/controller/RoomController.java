@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
@@ -14,9 +17,14 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Room>> showAllRoom(String type) {
-        Iterable<Room> rooms = roomService.findAll(type);
+    public ResponseEntity<Iterable<Room>> showAllRoom(String type, Long id) {
+        Iterable<Room> rooms = roomService.findAll(type, id);
         return new ResponseEntity<>(rooms, HttpStatus.OK);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity getOne(@PathVariable Long id) {
+        Optional<Room> room = roomService.findRoomById(id);
+        return new ResponseEntity<>(room, HttpStatus.OK);
     }
 
     @PostMapping

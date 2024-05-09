@@ -6,6 +6,9 @@ import com.example.jwtspring3.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -32,12 +35,20 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.deleteById(id);
     }
     @Override
-    public Iterable<Room> findAll(String type) {
-        if(type == null){
-            return roomRepository.findAll();
+    public Iterable<Room> findAll(String type, Long id) {
+        if(type != null){
+
+            return roomRepository.findAllByType(type);
+        }
+        else if(id != null) {
+            List<Room> roomList = new ArrayList<>();
+            Optional<Room> var10000 = this.roomRepository.findById(id);
+            Objects.requireNonNull(roomList);
+            var10000.ifPresent(roomList::add);
+            return roomList;
         }
         else {
-            return roomRepository.findAllByType(type);
+            return roomRepository.findAll();
         }
 
     }
