@@ -1,6 +1,7 @@
 package com.example.jwtspring3.controller;
 import com.example.jwtspring3.model.Room;
 import com.example.jwtspring3.service.RoomService;
+import com.example.jwtspring3.service.impl.RoomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,8 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Room>> showAllRoom(Long id) {
-        Iterable<Room> rooms = roomService.findAll(id);
+    public ResponseEntity<Iterable<Room>> showAllRoom(String type) {
+        Iterable<Room> rooms = roomService.findAll(type);
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
 
