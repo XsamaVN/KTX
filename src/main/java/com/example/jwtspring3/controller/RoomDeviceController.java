@@ -15,7 +15,7 @@ public class RoomDeviceController {
     RoomDeviceService roomDeviceService;
 
     @GetMapping
-    public ResponseEntity<Iterable<RoomDevice>> findAll(Long id){
+    public ResponseEntity findAll(Long id){
         return new ResponseEntity<>(roomDeviceService.findAllRoomId(id), HttpStatus.OK);
     }
     @PostMapping

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -19,13 +20,8 @@ public class RoomServiceImpl implements RoomService {
     public Room save(Room room) {
        return roomRepository.save(room);
     }
-
-    public Iterable<Room> findAll(Long id) {
-        if (id != null) {
-            List<Room> roomList = new ArrayList<>();
-            roomRepository.findById(id).ifPresent(roomList::add);
-            return roomList;
-        }
+    @Override
+    public Iterable<Room> findAll() {
         return roomRepository.findAll();
     }
 
@@ -39,12 +35,20 @@ public class RoomServiceImpl implements RoomService {
         roomRepository.deleteById(id);
     }
     @Override
-    public Iterable<Room> findAll(String type) {
-        if(type == null){
-            return roomRepository.findAll();
+    public Iterable<Room> findAll(String type, Long id) {
+        if(type != null){
+
+            return roomRepository.findAllByType(type);
+        }
+        else if(id != null) {
+            List<Room> roomList = new ArrayList<>();
+            Optional<Room> var10000 = this.roomRepository.findById(id);
+            Objects.requireNonNull(roomList);
+            var10000.ifPresent(roomList::add);
+            return roomList;
         }
         else {
-            return roomRepository.findAllByType(type);
+            return roomRepository.findAll();
         }
 
     }

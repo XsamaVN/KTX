@@ -18,19 +18,9 @@ public class Invoice {
     private String startDate;
     private String endDate;
 
-    public Invoice() {
-    }
 
-    public Invoice(Long id, Room room, User user, String useElectricity, String useWater, Long servicePrice, Long price, String startDate, String endDate) {
-        this.id = id;
-        this.room = room;
-        this.user = user;
-        this.useElectricity = useElectricity;
-        this.useWater = useWater;
-        this.servicePrice = servicePrice;
-        this.price = price;
-        this.startDate = startDate;
-        this.endDate = endDate;
+
+    public Invoice() {
     }
 
     public Long getId() {
