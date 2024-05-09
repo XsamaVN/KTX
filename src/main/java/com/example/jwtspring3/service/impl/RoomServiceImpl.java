@@ -20,10 +20,6 @@ public class RoomServiceImpl implements RoomService {
     public Room save(Room room) {
        return roomRepository.save(room);
     }
-    @Override
-    public Iterable<Room> findAll() {
-        return roomRepository.findAll();
-    }
 
     @Override
     public Optional<Room> findRoomById(Long id) {
