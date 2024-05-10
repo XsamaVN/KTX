@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoomDeviceRepository extends JpaRepository<RoomDevice,Long> {
-    Iterable<RoomDevice> findByRoomId(Long id);
+    Iterable<RoomDevice> findAllByRoomId(Long id);
 }

@@ -22,7 +22,7 @@ public class RoomDeviceServiceImpl implements RoomDeviceService {
 
     @Override
     public Iterable<RoomDevice> findAllRoomId(Long id) {
-        return roomDeviceRepository.findByRoomId(id);
+        return roomDeviceRepository.findAllByRoomId(id);
     }
 
     @Override
