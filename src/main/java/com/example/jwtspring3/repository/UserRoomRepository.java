@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRoomRepository extends JpaRepository<UserRoom , Long> {
     Iterable<UserRoom> findByRoomId(Long id);
+    Iterable<UserRoom> findByUserId(Long id);
 }

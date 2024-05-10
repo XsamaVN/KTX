@@ -22,5 +22,8 @@ public class UserRoomController {
     public ResponseEntity< Iterable<UserRoom>> findAllByRoomId(@PathVariable Long id){
         return new ResponseEntity<>(userRoomService.findAllByRoomId(id), HttpStatus.OK);
     }
-
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Iterable<UserRoom>> findByUserId(@PathVariable Long id){
+        return new ResponseEntity<>(userRoomService.findByUserId(id), HttpStatus.OK);
+    }
 }

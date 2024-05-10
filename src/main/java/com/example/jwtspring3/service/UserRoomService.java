@@ -6,5 +6,5 @@ public interface UserRoomService {
     void save(UserRoom userRoom);
     Iterable<UserRoom> findAll();
     Iterable<UserRoom> findAllByRoomId(Long id);
-
+    Iterable<UserRoom> findByUserId(Long id);
 }

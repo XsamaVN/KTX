@@ -24,4 +24,9 @@ public class UserRoomImpl implements UserRoomService {
     public Iterable<UserRoom> findAllByRoomId(Long id) {
         return userRoomRepository.findByRoomId(id);
     }
+
+    @Override
+    public Iterable<UserRoom> findByUserId(Long id) {
+        return userRoomRepository.findByUserId(id);
+    }
 }
