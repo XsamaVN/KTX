@@ -5,7 +5,6 @@ import com.example.jwtspring3.repository.RoomRepository;
 import com.example.jwtspring3.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -16,10 +15,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room save(Room room) {
        return roomRepository.save(room);
-    }
-    @Override
-    public Iterable<Room> findAll() {
-        return roomRepository.findAll();
     }
 
     @Override

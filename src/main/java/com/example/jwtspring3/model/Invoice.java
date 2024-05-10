@@ -16,6 +16,10 @@ public class Invoice {
     private Long servicePrice;
     private Long price;
 
+
+    public Invoice() {
+    }
+
     public Invoice(Long id, Room room, User user, String useElectricity, String useWater, Long servicePrice, Long price) {
         this.id = id;
         this.room = room;
@@ -24,9 +28,6 @@ public class Invoice {
         this.useWater = useWater;
         this.servicePrice = servicePrice;
         this.price = price;
-    }
-
-    public Invoice() {
     }
 
     public Long getId() {
@@ -84,4 +85,5 @@ public class Invoice {
     public void setPrice(Long price) {
         this.price = price;
     }
+
 }
