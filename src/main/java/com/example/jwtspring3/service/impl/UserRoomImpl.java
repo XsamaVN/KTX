@@ -11,8 +11,8 @@ public class UserRoomImpl implements UserRoomService {
     @Autowired
     UserRoomRepository userRoomRepository;
     @Override
-    public void save(UserRoom userRoom) {
-        userRoomRepository.save(userRoom);
+    public UserRoom save(UserRoom userRoom) {
+      return userRoomRepository.save(userRoom);
     }
 
     @Override
