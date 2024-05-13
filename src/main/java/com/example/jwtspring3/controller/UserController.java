@@ -73,6 +73,12 @@ public class UserController {
             if (currentUser.getUsername().equals(user.getUsername())) {
                 return new ResponseEntity<>("Username existed", HttpStatus.OK);
             }
+            if (currentUser.getIdentificationCard().equals(user.getIdentificationCard())){
+                return new ResponseEntity<>("IdentificationCard existed", HttpStatus.OK);
+            }
+            if (currentUser.getPhone().equals(user.getPhone())){
+                return new ResponseEntity<>("Phone existed", HttpStatus.OK);
+            }
         }
         if (user.getRoles() == null) {
             Role role1 = roleService.findByName("ROLE_USER");

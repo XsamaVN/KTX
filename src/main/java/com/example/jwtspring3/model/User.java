@@ -20,7 +20,7 @@ public class User implements Serializable {
     private String phone;
     private String address;
     private String dateOfBirth;
-    private int identificationCard;
+    private String identificationCard;
     @Column(length = 1000)
     private String img;
     private String clazz;
@@ -31,7 +31,7 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-    public User(Long id, String username, String password, String gender, String phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Role> roles) {
+    public User(Long id, String username, String password, String gender, String phone, String address, String dateOfBirth, String identificationCard, String img, String clazz, boolean enabled, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -113,11 +113,11 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public int getIdentificationCard() {
+    public String getIdentificationCard() {
         return identificationCard;
     }
 
-    public void setIdentificationCard(int identificationCard) {
+    public void setIdentificationCard(String identificationCard) {
         this.identificationCard = identificationCard;
     }
 
