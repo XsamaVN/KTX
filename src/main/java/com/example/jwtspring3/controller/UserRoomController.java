@@ -1,10 +1,10 @@
 package com.example.jwtspring3.controller;
-
 import com.example.jwtspring3.model.UserRoom;
 import com.example.jwtspring3.service.UserRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +17,10 @@ public class UserRoomController {
     public ResponseEntity< Iterable<UserRoom>> findAll(){
         return new ResponseEntity<>(userRoomService.findAll(), HttpStatus.OK);
     }
-
+    @PostMapping
+    public ResponseEntity addNew( @RequestBody UserRoom userRoom, BindingResult bindingResult){
+        return new ResponseEntity<>(userRoomService.save(userRoom),HttpStatus.CREATED);
+    }
     @GetMapping("/{id}")
     public ResponseEntity< Iterable<UserRoom>> findAllByRoomId(@PathVariable Long id){
         return new ResponseEntity<>(userRoomService.findAllByRoomId(id), HttpStatus.OK);
