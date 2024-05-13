@@ -15,8 +15,10 @@ public class User implements Serializable {
     private String username;
     @Column(nullable = false)
     private String password;
+    private String name;
     private String gender;
-    private int phone;
+    @Column(unique = true)
+    private String phone;
     private String address;
     private String dateOfBirth;
     private int identificationCard;
@@ -30,7 +32,7 @@ public class User implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
 
-    public User(Long id, String username, String password, String gender, int phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Role> roles) {
+    public User(Long id, String username, String password, String gender, String phone, String address, String dateOfBirth, int identificationCard, String img, String clazz, boolean enabled, Set<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -72,6 +74,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -80,11 +90,11 @@ public class User implements Serializable {
         this.gender = gender;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
