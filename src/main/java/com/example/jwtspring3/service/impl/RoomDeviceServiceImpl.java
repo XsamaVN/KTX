@@ -29,4 +29,14 @@ public class RoomDeviceServiceImpl implements RoomDeviceService {
     public void deleteAllByPropertyId(Long id) {
 
     }
+
+    @Override
+    public void deleteAllByRoomId(Long id) {
+        roomDeviceRepository.deleteAllByRoomId(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        roomDeviceRepository.deleteById(id);
+    }
 }

@@ -7,4 +7,7 @@ public interface RoomDeviceService {
     Iterable<RoomDevice> findAll(Long id);
     Iterable<RoomDevice> findAllRoomId(Long id);
     void deleteAllByPropertyId (Long id);
+
+    void deleteAllByRoomId(Long id);
+    void deleteById(Long id);
 }

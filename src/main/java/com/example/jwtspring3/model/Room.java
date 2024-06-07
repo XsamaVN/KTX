@@ -7,7 +7,6 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
     private String name;
     private int maxCurrent;
     private int currentPresent;

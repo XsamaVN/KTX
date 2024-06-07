@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms-device")
@@ -21,5 +23,14 @@ public class RoomDeviceController {
     @PostMapping
     public ResponseEntity<RoomDevice> addRoomDevice(@RequestBody RoomDevice roomDevice){
         return new ResponseEntity<>(roomDeviceService.save(roomDevice),HttpStatus.CREATED);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RoomDevice> deleteRoomDevice(@PathVariable Long id ){
+        Iterable<RoomDevice> list = roomDeviceService.findAllRoomId(id);
+        for (RoomDevice r :
+                list) {
+            roomDeviceService.deleteById(r.getId());
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
