@@ -8,16 +8,26 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String quantity;
     @Column(length = 1000)
     private String img;
 
-    public Device(Long id, String name, String img) {
+    public Device(Long id, String name, String img, String quantity) {
         this.id = id;
         this.name = name;
+        this.quantity = quantity;
         this.img = img;
     }
 
     public Device() {
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public Long getId() {

@@ -18,7 +18,7 @@ public class UserRoomController {
         return new ResponseEntity<>(userRoomService.findAll(), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity addNew( @RequestBody UserRoom userRoom, BindingResult bindingResult){
+    public ResponseEntity addNew( @RequestBody UserRoom userRoom){
         return new ResponseEntity<>(userRoomService.save(userRoom),HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
