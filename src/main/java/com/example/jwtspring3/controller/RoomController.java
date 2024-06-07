@@ -17,8 +17,8 @@ public class RoomController {
     RoomService roomService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Room>> showAllRoom(String type) {
-        Iterable<Room> rooms = roomService.findAll(type);
+    public ResponseEntity<Iterable<Room>> showAllRoom(String type, String name) {
+        Iterable<Room> rooms = roomService.findAll(type, name);
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
     @GetMapping("/{id}")

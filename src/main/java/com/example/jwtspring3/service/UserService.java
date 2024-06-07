@@ -1,16 +1,19 @@
 package com.example.jwtspring3.service;
+
 import com.example.jwtspring3.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     void save(User user);
 
     Iterable<User> findAll();
-    Iterable<User> findAllUserByAdmin();
+
+    Iterable<User> findAllUserByAdmin(String name, String username);
 
     User findByUsername(String username);
 
@@ -19,7 +22,9 @@ public interface UserService extends UserDetailsService {
     Optional<User> findById(Long id);
 
     UserDetails loadUserById(Long id);
+
     public Page<User> getAllUsers(Pageable pageable);
+
     boolean checkLogin(User user);
 
     boolean isRegister(User user);

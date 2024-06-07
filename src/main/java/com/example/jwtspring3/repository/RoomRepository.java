@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoomRepository extends JpaRepository<Room,Long> {
     Iterable<Room> findAllByType(String type);
-
+    Iterable<Room> findAllByTypeAndAndNameContaining(String type,String name);
 }
