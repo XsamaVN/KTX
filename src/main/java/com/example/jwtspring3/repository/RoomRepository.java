@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room,Long> {
+public interface RoomRepository extends JpaRepository<Room, Long> {
     Iterable<Room> findAllByType(String type);
-    Iterable<Room> findAllByTypeAndAndNameContaining(String type,String name);
+
+    Iterable<Room> findAllByTypeAndAndNameContaining(String type, String name);
+
+    Iterable<Room> findAllByNameContaining(String name);
 }

@@ -33,6 +33,8 @@ public class RoomServiceImpl implements RoomService {
     public Iterable<Room> findAll(String type, String name) {
         if (type != null && name != null) {
             return roomRepository.findAllByTypeAndAndNameContaining(type, name);
+        } else if (name != null) {
+            return roomRepository.findAllByNameContaining(name);
         } else if (type != null) {
             return roomRepository.findAllByType(type);
         } else {
