@@ -11,6 +11,7 @@ public class RoomDevice {
     private Room room;
     @ManyToOne
     private Device device;
+
     private String status;
 
     public RoomDevice() {
