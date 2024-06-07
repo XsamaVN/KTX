@@ -5,6 +5,7 @@ import com.example.jwtspring3.service.impl.RoomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -28,7 +29,16 @@ public class RoomController {
     }
 
     @PostMapping
-    public ResponseEntity<Room> addRoom(@RequestBody Room room) {
+    public ResponseEntity addRoom(@RequestBody Room room, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Iterable<Room> rooms = roomService.findAll();
+        for (Room item : rooms) {
+            if (item.getName().equals(room.getName())) {
+                return new ResponseEntity<>("Room name existed", HttpStatus.OK);
+            }
+        }
         return new ResponseEntity<>(roomService.save(room), HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
