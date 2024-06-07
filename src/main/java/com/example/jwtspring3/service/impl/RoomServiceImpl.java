@@ -30,6 +30,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Iterable<Room> findAll() {
+        return roomRepository.findAll();
+    }
+
+    @Override
     public Iterable<Room> findAll(String type, String name) {
         if (type != null && name != null) {
             return roomRepository.findAllByTypeAndAndNameContaining(type, name);
@@ -41,5 +46,4 @@ public class RoomServiceImpl implements RoomService {
             return roomRepository.findAll();
         }
     }
-
 }
