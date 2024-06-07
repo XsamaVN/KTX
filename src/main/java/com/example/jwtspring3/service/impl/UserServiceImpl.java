@@ -52,8 +52,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Iterable<User> findAllUserByAdmin() {
-        return userRepository.findByRolesIdNot(1L);
+    public Iterable<User> findAllUserByAdmin(String name, String username) {
+        if (name != null && username != null) {
+            return userRepository.findByRolesIdNotAndNameContainingAndUsernameContaining(1L, name, username);
+        } else if (name != null) {
+            return userRepository.findByRolesIdNotAndNameContaining(1L, name);
+        } else if (username != null) {
+            return userRepository.findByRolesIdNotAndUsernameContaining(1L, username);
+        } else {
+            return userRepository.findByRolesIdNot(1L);
+        }
     }
 
     @Override

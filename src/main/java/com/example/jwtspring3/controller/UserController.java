@@ -58,8 +58,8 @@ public class UserController {
     }
 
     @GetMapping("/admin/users")
-    public ResponseEntity<Iterable<User>> showAllUserByAdmin() {
-        Iterable<User> users = userService.findAllUserByAdmin();
+    public ResponseEntity<Iterable<User>> showAllUserByAdmin(String name, String username) {
+        Iterable<User> users = userService.findAllUserByAdmin(name, username);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
