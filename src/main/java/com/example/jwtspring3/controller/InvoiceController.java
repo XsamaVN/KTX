@@ -1,10 +1,13 @@
 package com.example.jwtspring3.controller;
+import com.example.jwtspring3.model.DTO;
 import com.example.jwtspring3.model.Invoice;
 import com.example.jwtspring3.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -19,5 +22,10 @@ public class InvoiceController {
     @PostMapping
     public ResponseEntity<Invoice> addInvoice(@RequestBody Invoice invoice){
         return new ResponseEntity<>(invoiceService.save(invoice),HttpStatus.CREATED);
+    }
+    @GetMapping("/total-month")
+    public ResponseEntity<List<DTO>> getTotalByMonth(){
+        List<DTO> listTotalByMonth = invoiceService.getTotalByMonth();
+        return new ResponseEntity<>(listTotalByMonth,HttpStatus.OK);
     }
 }

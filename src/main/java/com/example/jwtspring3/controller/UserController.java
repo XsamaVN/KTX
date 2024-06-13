@@ -73,10 +73,10 @@ public class UserController {
             if (currentUser.getUsername().equals(user.getUsername())) {
                 return new ResponseEntity<>("Username existed", HttpStatus.OK);
             }
-            if (currentUser.getIdentificationCard().equals(user.getIdentificationCard())){
+            if (currentUser.getIdentificationCard().equals(user.getIdentificationCard())) {
                 return new ResponseEntity<>("IdentificationCard existed", HttpStatus.OK);
             }
-            if (currentUser.getPhone().equals(user.getPhone())){
+            if (currentUser.getPhone().equals(user.getPhone())) {
                 return new ResponseEntity<>("Phone existed", HttpStatus.OK);
             }
         }
@@ -93,12 +93,16 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtService.generateTokenLogin(authentication);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User currentUser = userService.findByUsername(user.getUsername());
-        return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
+        if (!currentUser.isEnabled()) {
+            return new ResponseEntity<>("Tài Khoản Bị Khóa", HttpStatus.OK);
+        } else {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtService.generateTokenLogin(authentication);
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return ResponseEntity.ok(new JwtResponse(jwt, currentUser.getId(), userDetails.getUsername(), userDetails.getAuthorities()));
+        }
     }
 
     @GetMapping("/users/{id}")
@@ -128,7 +132,7 @@ public class UserController {
         User user = optionalUser.get();
         user.setEnabled(!user.isEnabled());
         userService.save(user);
-        return new  ResponseEntity<>(user,HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }
 

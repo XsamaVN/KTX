@@ -1,5 +1,6 @@
 package com.example.jwtspring3.service.impl;
 
+import com.example.jwtspring3.model.DTO;
 import com.example.jwtspring3.model.Invoice;
 import com.example.jwtspring3.model.Room;
 import com.example.jwtspring3.repository.InvoiceRepository;
@@ -7,6 +8,7 @@ import com.example.jwtspring3.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,5 +26,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Iterable<Invoice> findAll() {
         return invoiceRepository.findAll();
+    }
+
+    @Override
+    public List<DTO> getTotalByMonth(){
+        return invoiceRepository.getTotalByMonth();
     }
 }
